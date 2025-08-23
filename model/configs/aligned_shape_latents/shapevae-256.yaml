@@ -1,0 +1,46 @@
+model:
+  target: model.michelangelo.models.tsal.asl_pl_module.AlignedShapeAsLatentPLModule
+  params:
+    shape_module_cfg:
+      target: model.michelangelo.models.tsal.sal_perceiver.AlignedShapeLatentPerceiver
+      params:
+        num_latents: 256 #256 512
+        embed_dim: 32
+        point_feats: 11   # normal
+        num_freqs: 8
+        include_pi: false
+        heads: 12
+        width: 384 #prev:384  original:768
+        num_encoder_layers: 6 # 6, 4, 8 for 16384 gs;  6 for 4k gs 
+        num_decoder_layers: 12 #8, 6, 16 for 16384 gs; 12 for 4k gs
+        use_ln_post: true
+        init_scale: 0.25
+        qkv_bias: false
+        use_checkpoint: true
+    aligned_module_cfg:
+      target: model.michelangelo.models.tsal.clip_asl_module.CLIPAlignedShapeAsLatentModule
+      #params:
+        #clip_model_version: "./checkpoints/clip/clip-vit-large-patch14"
+
+    loss_cfg:
+      target: model.michelangelo.models.tsal.loss.ContrastKLNearFar
+      params:
+        contrast_weight: 0.1
+        near_weight: 0.1
+        kl_weight: 0.001
+
+    optimizer_cfg:
+      optimizer:
+        target: torch.optim.AdamW
+        params:
+          betas: [0.9, 0.99]
+          eps: 1.e-6
+          weight_decay: 1.e-2
+
+      scheduler:
+        target: model.michelangelo.utils.trainings.lr_scheduler.LambdaWarmUpCosineFactorScheduler
+        params:
+          warm_up_steps: 5000
+          f_start: 1.e-6
+          f_min: 1.e-3
+          f_max: 1.0
