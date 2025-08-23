@@ -20,15 +20,13 @@
 </div>
 
 <div align="center">
-    <a href="https://github.com/Zerg-Overmind/Can3Tok"><strong>Project Page</strong></a> |
-    <a href="https://github.com/Zerg-Overmind/Can3Tok"><strong>Paper</strong></a> 
+    <a href="https://zerg-overmind.github.io/Can3Tok.github.io/"><strong>Project Page</strong></a> |
+    <a href="https://arxiv.org/abs/2508.01464"><strong>Paper</strong></a> 
 </div>
 
 <br>
 
 <div align="center">
-
-# (Code Will be Released at [Adobe's Repo](https://github.com/adobe-research) Soon)
 
 </div>
 
@@ -82,6 +80,9 @@ where you might want to modify the path pointing to the 3D Gaussians path and ou
 
 ## Baselines
 We also provide the code for training and evaluating the baselines in `gs_pointtransformer.py`, `gs_ae.py`, `gs_pointvae.py` and etc. Also, please refer to `tsne_exp*` for the t-SNE visualization of the latent space of Can3Tok and baselines.  
+
+## Generative applications
+Feel free to explore various generative applications using Can3Tok, such as 3D scene synthesis with various diffusion models!
 
 ## Acknowledgement
 We would like to thank the authors of the following repositories for their open-source code and datasets, which we built upon in this work:
