@@ -69,7 +69,7 @@ To enable uniform training of Can3Tok across thousands of diverse scenes, we enf
 4. After that, we continue 3DGS optimization until opt.iterations, e.g. 30000.
 This is to make sure that we have a fixed number of Gaussians at the end of training for each scene, while with small PSNR degradation. Please refer to the code in `train.py` for details. We also enable the hint and code for starting from a fixed number of SfM points as initialization in `scene/dataset_readers.py`.
 
-If you've already have 3DGS results for DL3DV-10K dataset, you can skip the 3DGS optimization step and directly use `groundedSAM.py` to crop out a user-specific number of Gaussians for each scene, e.g. 40K or 100K etc, for training Can3Tok.
+If you've already have 3DGS results for DL3DV-10K dataset, you can skip the 3DGS optimization step and directly use `groundedSAM.py` to crop out a user-specific number of Gaussians for each scene, e.g. 40K or 100K etc, for training Can3Tok. You will also need to modify the output size of decoder MLP at [here](https://github.com/adobe-research/Can3Tok/blob/master/model/michelangelo/models/tsal/sal_perceiver.py#L332) to match the input number of 3DGS.
 
 
 ## Training and Evaluation
