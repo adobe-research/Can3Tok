@@ -68,6 +68,7 @@ To enable uniform training of Can3Tok across thousands of diverse scenes, we enf
 3. At iteration opt.densify_until_iter, we prune the number of Gaussians to be exactly dataset.num_gs_per_scene_end**2, e.g. 200*200 = 40000.
 4. After that, we continue 3DGS optimization until opt.iterations, e.g. 30000.
 This is to make sure that we have a fixed number of Gaussians at the end of training for each scene, while with small PSNR degradation. Please refer to the code in `train.py` for details. We also enable the hint and code for starting from a fixed number of SfM points as initialization in `scene/dataset_readers.py`.
+If you've already have 3DGS results for DL3DV-10K dataset, you can skip the 3DGS optimization step and directly use `groundedSAM.py` to crop out 3DGS for each scene with a user-specific number of Gaussians, e.g. 40K or 100K etc, for training Can3Tok.
 
 
 ## Training and Evaluation
